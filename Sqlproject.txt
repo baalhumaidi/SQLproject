@@ -117,8 +117,7 @@ values (4,'ksa','asia');
 
 
 insert into users 
-values (5,'ahmed','a@a.com','m','1/1/1',
-now(), 4);
+values (5,'ahmed','a@a.com','m','1/1/1',now(), 4);
 
    
 insert into orders values
@@ -127,7 +126,7 @@ insert into orders values
   
 
 insert into products values
-(1, 'a product', 6, 'valid',now());
+(1, 'a product', 6, 'valid',now()),(2,'another product',0,'valid',now());
 
    
     
