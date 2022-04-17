@@ -4,13 +4,11 @@ SQL Database Project
 create database store;
 
 1.2 Create table countries.
+use store 
 
 create table countries(
-    
-code int primary key ,
-    
+code int primary key ,    
 name varchar(20),
-    
 continent_name varchar(20)  
 );
 
@@ -135,6 +133,7 @@ modify column created_at datetime default now();
 4. 
 
     A. Add new row to the countries table.
+    
 insert into countries 
 values (4,'ksa','asia'); 
 
@@ -146,26 +145,29 @@ values (5,'ahmed','a@a.com','m','1/1/1',
 now(), 4);
 
    C.  Add new row to the order table.
+   
 insert into orders values
 (1,5,'start',now())
 
    D.  Add new row to the products table.
+   
 insert into products values
 (1, 'a product', 6, 'valid',now());
 
     E. Add new row to the order_products table.
+    
 insert into order_products 
 values(1,2,4)
 
 
    F.  Update row from countries table.
+   
 Update countries 
-
 set name = 'Saudi Arabia'
-
 where code = 4;
 
    G.  Delete row from products table.
+   
 Delete from Products
 where id = 1;
 
