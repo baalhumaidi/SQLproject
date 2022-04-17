@@ -1,0 +1,175 @@
+SQL Database Project
+
+1.1 Create database (store)
+create database store;
+
+1.2 Create table countries.
+
+create table countries(
+    
+code int primary key ,
+    
+name varchar(20),
+    
+continent_name varchar(20)  
+);
+
+
+1.3 Create table users.
+
+create table users(
+id int primary key,
+fullname varchar(20),
+email varchar(20),
+gender char(1),
+data_of_birth varchar(15),
+created_at datatime,
+country_code int,
+foreign key (country_code) references countries(code)
+);
+
+
+1.4 Create table orders.
+
+create table orders(
+
+id int primary key,
+
+user_id int,
+s
+tatus varchar(6),
+
+created_at datetime,
+
+foreign key (user_id) references users(id)
+)
+
+
+1.5 Create table order_products.
+
+create table order_products(
+order_id int,
+product_id int,
+quantity int,
+Primary key (order_id, product_id),
+foreign key (order_id) references orders(id),
+foreign key (product_id) references products(id))
+
+1.6 Create table products.
+
+create table products(
+id int primary key,
+name varchar(10),
+price int, 
+status varchar(10),
+created_at datetime)
+
+
+***********************************
+
+
+3.Add the following constraints to each tables
+
+  A.   countries
+
+       1. Add not null constraint to column " name ".
+
+alter table countries modify name varchar(20) not null;
+
+       2.  Add unique constraint to column " continent_name ".
+
+ALTER TABLE countries 
+ADD CONSTRAINT Uniquevalue UNIQUE(continent_name);
+
+___________________________
+   B. users
+       1.  Add unique constraint to column " email ".
+
+ALTER TABLE users
+ADD CONSTRAINT Uniquevalue UNIQUE(email);
+
+      2.   Add check constraint to column " gender " between 'm' or 'f'.
+
+alter table users
+add check(gender='m' or gender='f')
+
+___________________________
+    C. orders
+        1. Add check constraint to column " status " between 'start' or 'finish'.
+
+alter table orders
+add check(status='start' or status='finish')
+
+___________________________
+   D.  order_items
+      1.  Add default constraint to column " quantity " value 0.
+
+alter table order_products
+ 
+ alter quantity set default 0
+
+___________________________
+    E.products
+       1.  Add default constraint to column " price " value 0.
+alter table products 
+alter price set default 0
+
+       2. Add not null constraint to column " name ".
+alter table products 
+modify name varchar(10) NOT NULL
+
+        3.Add check constraint to column " status " between 'valid' or 'expired'.
+alter table products 
+add check (status='valid' or status='expired')
+
+___________________________
+Bouns : **Add default datetime to created_at column which take the timestap when the row is created
+
+alter table products 
+modify column created_at datetime default current_timestamp
+
+alter table users 
+modify column created_at datetime default now();
+**********************************
+
+4. 
+
+    A. Add new row to the countries table.
+insert into countries 
+values (4,'ksa','asia'); 
+
+    B. Add new row to the users table.
+
+
+insert into users 
+values (5,'ahmed','a@a.com','m','1/1/1',
+now(), 4);
+
+   C.  Add new row to the order table.
+insert into orders values
+(1,5,'start',now())
+
+   D.  Add new row to the products table.
+insert into products values
+(1, 'a product', 6, 'valid',now());
+
+    E. Add new row to the order_products table.
+insert into order_products 
+values(1,2,4)
+
+
+   F.  Update row from countries table.
+Update countries 
+
+set name = 'Saudi Arabia'
+
+where code = 4;
+
+   G.  Delete row from products table.
+Delete from Products
+where id = 1;
+
+
+
+
+
